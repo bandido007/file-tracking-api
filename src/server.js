@@ -15,6 +15,6 @@ sequelize.sync({ alter: process.env.NODE_ENV === 'development' })
       console.log(`Server running on port ${PORT}`);
     });
   })
-  .catch(err => {
+  .catch(error => {
     console.error('Failed to sync database:', err);
   });
