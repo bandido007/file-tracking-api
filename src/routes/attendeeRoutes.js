@@ -15,6 +15,6 @@ router.get('/profile', authenticate, attendeeController.getProfile);
 
 //
 router.get('/', attendeeController.getAllAttendees);
-router.post('/', attendeeController.createAttendee);
+//router.post('/', attendeeController.createAttendee);
 
 module.exports = router;
