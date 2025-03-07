@@ -116,6 +116,49 @@ exports.login = async (req, res) => {
   }
 };
 
+// Get all attendees
+exports.getAllAttendees = async (req, res) => {
+  try {
+    const attendees = await Attendee.findAll();
+    return res.status(200).json({
+      status: 'success',
+      data: attendees
+    });
+  } catch (error) {
+    console.error('Error getting attendees:', error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Failed to retrieve attendees',
+      error: error.message
+    });
+  }
+};
+
+// Create a new attendee
+exports.createAttendee = async (req, res) => {
+  try {
+    const { email, name, role, password } = req.body;
+    if (!email || !name || !password) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Email, name, and password are required'
+      });
+    }
+    const attendee = await Attendee.create({ email, name, role, password });
+    return res.status(201).json({
+      status: 'success',
+      data: attendee
+    });
+  } catch (error) {
+    console.error('Error creating attendee:', error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Failed to create attendee',
+      error: error.message
+    });
+  }
+};
+
 // Get attendee profile
 exports.getProfile = async (req, res) => {
   try {

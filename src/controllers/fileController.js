@@ -1,6 +1,26 @@
 const { File, WorkLog, Attendee } = require('../models');
 const { Op } = require('sequelize');
 
+// Get all files
+exports.getAllFiles = async (req, res, next) => {
+  try {
+    const files = await File.findAll({
+      order: [['created_time', 'DESC']] // Optional: Order by creation time
+    });
+    return res.status(200).json({
+      status: 'success',
+      data: files
+    });
+  } catch (error) {
+    console.error('Error getting all files:', error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Failed to retrieve files',
+      error: error.message
+    });
+  }
+};
+
 // Check in a file - create a new file record with UUID
 exports.checkInFile = async (req, res) => {
   try {

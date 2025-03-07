@@ -6,6 +6,9 @@ const router = express.Router();
 // Check in a file
 router.post('/', fileController.checkInFile);
 
+// Get all files
+router.get('/', fileController.getAllFiles);
+
 // Get trail log for a file
 router.get('/:uuid/logs', fileController.getFileTrailLog);
 

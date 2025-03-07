@@ -13,4 +13,8 @@ router.post('/login', attendeeController.login);
 // Get attendee profile (protected route)
 router.get('/profile', authenticate, attendeeController.getProfile);
 
+//
+router.get('/', attendeeController.getAllAttendees);
+router.post('/', attendeeController.createAttendee);
+
 module.exports = router;
