@@ -1,7 +1,7 @@
 const sequelize = require('../config/database');
 const Attendee = require('./attendee');
 const File = require('./file');
-const WorkLog = require('./workLog');
+const WorkLog = require('./worklog');
 
 // Define relationships
 File.hasMany(WorkLog, { foreignKey: 'file_id' });
